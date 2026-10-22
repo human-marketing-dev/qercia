@@ -11,8 +11,8 @@ export function Photo({
 }) {
   const bg =
     tone === "dark"
-      ? "bg-[radial-gradient(120%_90%_at_20%_10%,#5b6650_0%,#323b2e_55%,#20261d_100%)]"
-      : "bg-[radial-gradient(120%_90%_at_80%_0%,#d8cfbf_0%,#c4b8a3_50%,#a99b84_100%)]";
+      ? "bg-[radial-gradient(120%_90%_at_20%_10%,#6d6863_0%,#3d3a39_55%,#262324_100%)]"
+      : "bg-[radial-gradient(120%_90%_at_80%_0%,#e4e0d5_0%,#cfc9bc_50%,#b7b0a2_100%)]";
 
   return (
     <div
@@ -22,7 +22,7 @@ export function Photo({
     >
       <svg
         aria-hidden
-        className="absolute inset-0 h-full w-full opacity-[0.18]"
+        className="absolute inset-0 h-full w-full opacity-[0.14] transition-transform duration-700 ease-out group-hover:scale-105"
         preserveAspectRatio="none"
         viewBox="0 0 400 300"
       >
@@ -38,8 +38,8 @@ export function Photo({
         ))}
       </svg>
       <span
-        className={`absolute bottom-3 left-4 text-[11px] uppercase tracking-[0.18em] ${
-          tone === "dark" ? "text-white/45" : "text-foreground/45"
+        className={`absolute bottom-3 left-4 text-xs leading-none ${
+          tone === "dark" ? "text-white/45" : "text-ink/45"
         }`}
       >
         {label}

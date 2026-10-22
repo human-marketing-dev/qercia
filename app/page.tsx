@@ -1,5 +1,6 @@
 import { ContactForm } from "@/app/_components/contact-form";
 import { Header } from "@/app/_components/header";
+import { Eyebrow, h2 } from "@/app/_components/ui";
 import {
   Amenidades,
   Desarrollador,
@@ -65,7 +66,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
       <Header />
-      <main>
+      <main className="md:px-10">
         <Hero />
         <KeyFacts />
         <Lotes />
@@ -75,16 +76,16 @@ export default function Home() {
         <Seguridad />
         <Desarrollador />
         <Preguntas />
-        <section id="contacto" className="bg-moss text-white">
-          <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-5">
-              <p className="mb-5 text-xs uppercase tracking-[0.22em] text-white/60">Contacto</p>
-              <h2 className="font-serif text-4xl leading-[1.05] md:text-6xl">Agenda tu visita al terreno</h2>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-white/75">
+        <section id="contacto" className="py-[90px] md:py-[100px]">
+          <div className="mx-auto grid w-full max-w-[1230px] gap-14 px-5 md:px-[65px] lg:grid-cols-12 lg:gap-10 xl:px-0">
+            <div className="lg:col-span-5" data-reveal>
+              <Eyebrow>Contacto</Eyebrow>
+              <h2 className={`${h2} text-ink`}>Agenda tu visita al terreno</h2>
+              <p className="mt-6 max-w-md">
                 Recorre los lotes disponibles con un asesor y llévate el plano para tu arquitecto.
               </p>
             </div>
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-6 lg:col-start-7" data-reveal>
               <ContactForm />
             </div>
           </div>

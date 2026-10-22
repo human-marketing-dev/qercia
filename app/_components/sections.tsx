@@ -1,46 +1,43 @@
 import { Photo } from "@/app/_components/photo";
-import { amenities, faqs, keyFacts, services, site, whatsappHref } from "@/app/_lib/site";
+import { Arrow, Button, Eyebrow, SplitTitle, TextLink, h2, h3, inner } from "@/app/_components/ui";
+import { amenities, faqs, keyFacts, nav, services, site, whatsappHref } from "@/app/_lib/site";
 
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p className={`mb-5 text-xs uppercase tracking-[0.22em] ${light ? "text-white/60" : "text-stone"}`}>
-      {children}
-    </p>
-  );
-}
-
-const h2 = "font-serif text-4xl leading-[1.05] md:text-6xl";
+const delay = (i: number) => ({ "--delay": `${i * 0.08}s` }) as React.CSSProperties;
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative flex min-h-[100svh] items-end text-white">
+    <section
+      id="inicio"
+      className="relative flex h-[100svh] min-h-[620px] items-end overflow-hidden rounded-b-[20px] text-background md:h-[720px] md:min-h-0"
+    >
       {/* TODO: reemplazar por foto aérea real (next/image con priority) o video en loop. */}
       <Photo label="Vista aérea del fraccionamiento" tone="dark" className="absolute inset-0" />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-black/45 to-transparent" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-32 md:px-10 md:pb-24">
+      <div className={`relative pb-14 md:pb-[70px] ${inner}`}>
         <Eyebrow light>Camino al Diente · Cañada del Sur · Monterrey</Eyebrow>
-        <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] md:text-7xl lg:text-8xl">
-          Lotes residenciales en Carretera Nacional, cerca de San Pedro
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">
-          Lotes desde 500 m² con frentes de alrededor de 20 m, servicios de red y escritura lista. Desde $8 mdp.
-        </p>
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a
-            href="#contacto"
-            className="rounded-full bg-white px-7 py-4 text-center text-foreground transition-colors hover:bg-sand"
-          >
-            Agenda una visita al terreno
-          </a>
-          {site.whatsapp && (
-            <a
-              href={whatsappHref("Hola, me interesa información de los lotes en Qercia.")}
-              className="rounded-full border border-white/50 px-7 py-4 text-center transition-colors hover:bg-white/10"
-            >
-              Escríbenos por WhatsApp
-            </a>
-          )}
+        <SplitTitle
+          text="Lotes residenciales en Carretera Nacional, cerca de San Pedro"
+          className="max-w-[820px] text-[40px] leading-[1.1] tracking-[-0.025em] md:text-[58px] md:leading-[1.13]"
+        />
+        <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <p className="max-w-[520px] text-[17px] leading-[1.7] text-background/80">
+            Lotes desde 500 m² con frentes de alrededor de 20 m, servicios de red y escritura lista. Desde $8 mdp.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button href="#contacto" tone="light">
+              Agenda una visita al terreno
+            </Button>
+            {site.whatsapp && (
+              <Button
+                href={whatsappHref("Hola, me interesa información de los lotes en Qercia.")}
+                tone="outline"
+              >
+                Escríbenos por WhatsApp
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -49,17 +46,21 @@ export function Hero() {
 
 export function KeyFacts() {
   return (
-    <div className="border-b border-line bg-background">
-      <ul className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-5">
+    <div className="pt-[70px] md:pt-[90px]">
+      <ul className={`grid grid-cols-2 border-y border-line md:grid-cols-5 ${inner} md:!px-0 xl:max-w-[1230px]`}>
         {keyFacts.map((fact, i) => (
           <li
             key={fact.label}
-            className={`border-line px-5 py-8 md:px-8 md:py-10 ${i > 0 ? "md:border-l" : ""} ${
-              i % 2 === 1 ? "border-l md:border-l" : ""
+            data-reveal
+            style={delay(i)}
+            className={`border-line py-7 md:px-7 md:py-9 md:first:pl-0 ${i > 0 ? "md:border-l" : ""} ${
+              i % 2 === 1 ? "border-l pl-5" : ""
             } ${i < 4 ? "border-b md:border-b-0" : ""} ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
           >
-            <span className="block text-xs uppercase tracking-[0.18em] text-stone">{fact.label}</span>
-            <span className="mt-2 block font-serif text-3xl md:text-4xl">{fact.value}</span>
+            <span className="block text-[32px] font-medium leading-none tracking-[-0.03em] text-ink md:text-[40px]">
+              {fact.value}
+            </span>
+            <span className="mt-3 block text-[15px] leading-snug text-muted">{fact.label}</span>
           </li>
         ))}
       </ul>
@@ -84,39 +85,39 @@ const lotPoints = [
 
 export function Lotes() {
   return (
-    <section id="lotes" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
-      <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32">
+    <section id="lotes" className="py-[90px] md:pb-[100px]">
+      <div className={inner}>
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-10" data-reveal>
+          <div className="lg:col-span-7">
             <Eyebrow>Los lotes</Eyebrow>
-            <h2 className={h2}>Tu lote para construir, listo para escriturar</h2>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-stone">
+            <h2 className={`${h2} text-ink`}>Tu lote para construir, listo para escriturar</h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="max-w-md">
               Qercia no vende casas de catálogo. Vende el terreno para que construyas la tuya, con tu arquitecto y a
               tu medida.
             </p>
-            <a
-              href="#contacto"
-              className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 transition-colors hover:border-clay hover:text-clay"
-            >
-              Pide el plano de lotes disponibles <span aria-hidden>→</span>
-            </a>
+            <div className="mt-6">
+              <TextLink href="#contacto">Pide el plano de lotes disponibles</TextLink>
+            </div>
           </div>
         </div>
 
-        <div className="lg:col-span-7">
-          <Photo label="Lote con vista a la sierra" className="aspect-[4/3] w-full" />
-          <ol className="mt-4">
-            {lotPoints.map((point, i) => (
-              <li key={point.title} className="grid gap-3 border-b border-line py-8 md:grid-cols-[4rem_1fr]">
-                <span className="font-serif text-2xl text-clay">0{i + 1}</span>
-                <div>
-                  <h3 className="text-xl font-medium md:text-2xl">{point.title}</h3>
-                  <p className="mt-3 leading-relaxed text-stone">{point.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+        <div className="group mt-14 overflow-hidden rounded-[20px]" data-reveal>
+          <Photo label="Lote con vista a la sierra" className="aspect-[4/3] w-full md:aspect-[16/7]" />
         </div>
+
+        <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-[30px]">
+          {lotPoints.map((point, i) => (
+            <li key={point.title} data-reveal style={delay(i)} className="group border-t border-line pt-6">
+              <span className="text-[15px] font-medium text-accent">0{i + 1}</span>
+              <h3 className={`${h3} mt-4 text-ink`}>
+                <span className="underline-draw">{point.title}</span>
+              </h3>
+              <p className="mt-4 text-[17px] leading-[1.75]">{point.body}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -139,38 +140,43 @@ const serviceIcons: Record<string, React.ReactNode> = {
 
 export function Servicios() {
   return (
-    <section id="servicios" className="bg-moss text-white">
-      <div className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
-          <div>
+    <section id="servicios" className="rounded-[20px] bg-ink py-[90px] text-background/75 md:py-[100px]">
+      <div className={inner}>
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-10" data-reveal>
+          <div className="lg:col-span-7">
             <Eyebrow light>Servicios</Eyebrow>
-            <h2 className={h2}>Servicios de red hasta tu lote</h2>
+            <h2 className={`${h2} text-background`}>Servicios de red hasta tu lote</h2>
           </div>
-          <p className="max-w-lg text-lg leading-relaxed text-white/75 lg:justify-self-end">
+          <p className="max-w-md lg:col-span-5">
             Agua de red, no de pozo. Gas natural, luz de CFE, drenaje y fibra óptica llegan hasta el lote. Construyes
             y te conectas.
           </p>
         </div>
 
-        <ul className="mt-16 grid grid-cols-2 border-t border-white/15 md:grid-cols-5">
-          {services.map((service) => (
-            <li key={service.title} className="border-b border-white/15 py-8 pr-4 md:border-b-0 md:pt-10">
+        <ul className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2 md:mt-16 lg:grid-cols-5 lg:gap-[30px]">
+          {services.map((service, i) => (
+            <li
+              key={service.title}
+              data-reveal
+              style={delay(i)}
+              className="rounded-[20px] bg-white/[0.04] p-7 ring-1 ring-white/10 transition-colors hover:bg-white/[0.08]"
+            >
               <svg
                 aria-hidden
-                width="28"
-                height="28"
+                width="30"
+                height="30"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.3"
+                strokeWidth="1.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-[#d9c3a5]"
+                className="text-accent"
               >
                 {serviceIcons[service.title]}
               </svg>
-              <p className="mt-5 text-lg">{service.title}</p>
-              <p className="mt-1 text-sm text-white/60">{service.detail}</p>
+              <p className={`${h3} mt-10 font-medium text-background`}>{service.title}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-background/60">{service.detail}</p>
             </li>
           ))}
         </ul>
@@ -182,39 +188,36 @@ export function Servicios() {
 export function Ubicacion() {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapQuery)}`;
   return (
-    <section id="ubicacion" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-5">
+    <section id="ubicacion" className="py-[90px] md:py-[100px]">
+      <div className={`grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 ${inner}`}>
+        <div className="lg:col-span-5" data-reveal>
           <Eyebrow>Ubicación</Eyebrow>
-          <h2 className={h2}>Ubicación: Camino al Diente, Cañada del Sur</h2>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-stone">
+          <h2 className={`${h2} text-ink`}>Ubicación: Camino al Diente, Cañada del Sur</h2>
+          <p className="mt-6 max-w-md">
             Qercia está en Camino al Diente, en Cañada del Sur, al sur de Monterrey, Nuevo León. Vives rodeado de
             montaña y sigues cerca de San Pedro para ir al trabajo, a la escuela o a ver a la familia.
           </p>
-          <address className="mt-8 border-l-2 border-clay pl-5 not-italic leading-relaxed">
+          <address className="mt-8 border-l-2 border-accent pl-5 text-[17px] not-italic leading-[1.7] text-ink">
             {site.address.street}
             <br />
             {site.address.neighborhood}, {site.address.city}
             <br />
             {site.address.region}, México
           </address>
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 transition-colors hover:border-clay hover:text-clay"
-          >
-            Cómo llegar <span aria-hidden>↗</span>
-          </a>
+          <div className="mt-8">
+            <TextLink href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              Cómo llegar
+            </TextLink>
+          </div>
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="overflow-hidden rounded-[20px] bg-beige lg:col-span-7" data-reveal style={delay(1)}>
           <iframe
             title="Mapa de ubicación de Qercia en Camino al Diente, Monterrey"
             src={`https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&z=14&output=embed`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="aspect-[4/3] w-full border-0 grayscale-[0.6] sepia-[0.15]"
+            className="block aspect-square w-full border-0 grayscale md:aspect-[4/3]"
           />
         </div>
       </div>
@@ -224,23 +227,35 @@ export function Ubicacion() {
 
 export function Amenidades() {
   return (
-    <section id="amenidades" className="bg-sand">
-      <div className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Eyebrow>Amenidades</Eyebrow>
-            <h2 className={h2}>Áreas verdes y amenidades</h2>
-            <p className="mt-10 font-serif text-7xl leading-none md:text-8xl">27,000 m²</p>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-stone">
-              de áreas verdes dentro del fraccionamiento, y amenidades para usar sin salir de casa.
-            </p>
+    <section id="amenidades" className="rounded-[20px] bg-ink py-[90px] text-background/75 md:py-[100px]">
+      <div className={inner}>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="flex flex-col lg:col-span-5" data-reveal>
+            <Eyebrow light>Amenidades</Eyebrow>
+            <h2 className={`${h2} text-background`}>Áreas verdes y amenidades</h2>
+            <div className="mt-12 lg:mt-auto">
+              <p className="text-[64px] font-medium leading-none tracking-[-0.04em] text-background md:text-[96px]">
+                27,000 m²
+              </p>
+              <p className="mt-5 max-w-sm">
+                de áreas verdes dentro del fraccionamiento, y amenidades para usar sin salir de casa.
+              </p>
+            </div>
           </div>
-          <Photo label="Alberca infinity y áreas verdes" className="aspect-[4/5] w-full lg:aspect-auto" />
+          <div className="group overflow-hidden rounded-[20px] lg:col-span-7" data-reveal style={delay(1)}>
+            <Photo label="Alberca infinity y áreas verdes" tone="dark" className="aspect-[4/3] w-full" />
+          </div>
         </div>
 
-        <ul className="mt-16 grid grid-cols-2 border-t border-line sm:grid-cols-3 lg:grid-cols-5">
-          {amenities.map((name) => (
-            <li key={name} className="border-b border-line py-5 pr-4 text-lg">
+        <ul className="mt-14 grid grid-cols-2 gap-x-[30px] border-t border-white/15 sm:grid-cols-3 lg:grid-cols-5">
+          {amenities.map((name, i) => (
+            <li
+              key={name}
+              data-reveal
+              style={delay(i % 5)}
+              className="flex items-baseline gap-3 border-b border-white/15 py-5 text-[17px] text-background"
+            >
+              <span className="text-[13px] tabular-nums text-accent">{String(i + 1).padStart(2, "0")}</span>
               {name}
             </li>
           ))}
@@ -254,19 +269,21 @@ const securityPoints = ["Barda perimetral", "Cámaras", "Acceso con revisión"];
 
 export function Seguridad() {
   return (
-    <section id="seguridad" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <Photo label="Acceso principal" className="aspect-[4/3] w-full" />
-        <div>
+    <section id="seguridad" className="py-[90px] md:py-[100px]">
+      <div className={`grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 ${inner}`}>
+        <div className="group overflow-hidden rounded-[20px] lg:col-span-6" data-reveal>
+          <Photo label="Acceso principal" className="aspect-square w-full" />
+        </div>
+        <div className="lg:col-span-5 lg:col-start-8" data-reveal style={delay(1)}>
           <Eyebrow>Seguridad</Eyebrow>
-          <h2 className={h2}>Seguridad en el acceso y el perímetro</h2>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-stone">
+          <h2 className={`${h2} text-ink`}>Seguridad en el acceso y el perímetro</h2>
+          <p className="mt-6 max-w-md">
             Barda perimetral, cámaras y acceso con revisión. Sabes quién entra y quién sale.
           </p>
           <ul className="mt-10 border-t border-line">
             {securityPoints.map((point) => (
-              <li key={point} className="flex items-center gap-4 border-b border-line py-4 text-lg">
-                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-clay" />
+              <li key={point} className="flex items-center gap-4 border-b border-line py-4 font-medium text-ink">
+                <span aria-hidden className="h-2 w-2 rounded-full bg-accent" />
                 {point}
               </li>
             ))}
@@ -279,12 +296,14 @@ export function Seguridad() {
 
 export function Desarrollador() {
   return (
-    <section id="desarrollador" className="border-y border-line">
-      <div className="mx-auto max-w-3xl px-5 py-24 text-center md:py-32">
-        <Eyebrow>Desarrollador</Eyebrow>
-        <h2 className={h2}>Un desarrollo de Bono Edificaciones</h2>
+    <section id="desarrollador" className="rounded-[20px] bg-beige py-[90px] md:py-[100px]">
+      <div className={`grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-10 ${inner}`} data-reveal>
+        <div className="lg:col-span-7">
+          <Eyebrow>Desarrollador</Eyebrow>
+          <h2 className={`${h2} text-ink`}>Un desarrollo de Bono Edificaciones</h2>
+        </div>
         {/* TODO: agregar 1 o 2 datos verificables de Bono (años, proyectos entregados) y su logo. */}
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-stone">
+        <p className="max-w-md lg:col-span-5">
           Qercia es un proyecto de Bono Edificaciones. El terreno forma parte de la historia del Mineral de San Pedro
           y San Pablo.
         </p>
@@ -295,25 +314,25 @@ export function Desarrollador() {
 
 export function Preguntas() {
   return (
-    <section id="preguntas" className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-36">
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-4">
+    <section id="preguntas" className="py-[90px] md:py-[100px]">
+      <div className={`grid gap-12 lg:grid-cols-12 lg:gap-10 ${inner}`}>
+        <div className="lg:col-span-4" data-reveal>
           <Eyebrow>Preguntas frecuentes</Eyebrow>
-          <h2 className="font-serif text-4xl leading-[1.05] md:text-5xl">Preguntas frecuentes sobre los lotes</h2>
+          <h2 className={`${h2} text-ink`}>Preguntas frecuentes sobre los lotes</h2>
         </div>
-        <div className="border-t border-line lg:col-span-8">
+        <div className="border-t border-line lg:col-span-7 lg:col-start-6" data-reveal style={delay(1)}>
           {faqs.map((faq) => (
             <details key={faq.q} className="group border-b border-line">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
-                <h3 className="text-lg font-medium md:text-xl">{faq.q}</h3>
+                <h3 className={`${h3} text-ink`}>{faq.q}</h3>
                 <span
                   aria-hidden
-                  className="text-2xl leading-none text-clay transition-transform duration-200 group-open:rotate-45"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-xl leading-none text-accent transition-[transform,background-color] duration-300 group-open:rotate-45 group-hover:bg-beige"
                 >
                   +
                 </span>
               </summary>
-              <p className="max-w-2xl pb-6 leading-relaxed text-stone">{faq.a}</p>
+              <p className="max-w-2xl pb-7 text-[17px] leading-[1.75]">{faq.a}</p>
             </details>
           ))}
         </div>
@@ -324,24 +343,47 @@ export function Preguntas() {
 
 export function Footer() {
   return (
-    <footer className="bg-moss-dark text-white/70">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-14 md:flex-row md:justify-between md:px-10">
-        <div>
-          <p className="text-lg tracking-[0.32em] text-white">QERCIA</p>
-          <p className="mt-3 text-sm">Un desarrollo de {site.developer}</p>
+    <footer className="overflow-hidden rounded-t-[20px] bg-ink text-background/60 md:mx-10">
+      <div className={`pt-[90px] md:pt-[100px] ${inner}`}>
+        <a href="#contacto" className="group inline-flex items-center gap-4 text-[30px] font-medium leading-tight tracking-[-0.02em] text-background md:text-[42px]">
+          <span className="underline-draw is-static pb-1">Agenda una visita</span>
+          <Arrow className="h-5 w-7" />
+        </a>
+
+        <div className="mt-14 grid gap-10 border-t border-white/15 pt-10 text-[15px] leading-relaxed md:grid-cols-3">
+          <nav aria-label="Pie de página">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="group text-background">
+                    <span className="underline-draw pb-0.5">{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          {/* TODO: teléfono y horario de la oficina de ventas (deben coincidir con Google Business). */}
+          <address className="not-italic">
+            {site.address.street}, {site.address.neighborhood}
+            <br />
+            {site.address.city}, {site.address.region}, México
+          </address>
+          <p className="md:text-right">Un desarrollo de {site.developer}</p>
         </div>
-        {/* TODO: teléfono y horario de la oficina de ventas (deben coincidir con Google Business). */}
-        <address className="text-sm not-italic leading-relaxed">
-          {site.address.street}, {site.address.neighborhood}
-          <br />
-          {site.address.city}, {site.address.region}, México
-        </address>
-        <div className="text-sm">
-          {/* TODO: enlazar el aviso de privacidad cuando exista. */}
-          <p>Aviso de privacidad</p>
-          <p className="mt-3">© 2026 {site.developer}</p>
-          <p className="mt-3 text-xs text-white/45">Imágenes ilustrativas.</p>
-        </div>
+      </div>
+
+      <p
+        aria-hidden
+        className="mt-10 select-none text-center text-[23vw] font-medium leading-[0.75] tracking-[0.02em] text-white/[0.05] md:text-[19vw]"
+      >
+        QERCIA
+      </p>
+
+      <div className={`flex flex-col gap-2 border-t border-white/10 py-6 text-[13px] sm:flex-row sm:gap-6 ${inner}`}>
+        {/* TODO: enlazar el aviso de privacidad cuando exista. */}
+        <p>Aviso de privacidad</p>
+        <p>© 2026 {site.developer}</p>
+        <p className="text-background/45 sm:ml-auto">Imágenes ilustrativas.</p>
       </div>
     </footer>
   );

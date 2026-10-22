@@ -16,8 +16,8 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #3f4a3a 0%, #2c3429 100%)",
-          color: "white",
+          background: "#262324",
+          color: "#fffcf5",
         }}
       >
         <div style={{ fontSize: 32, letterSpacing: 12 }}>QERCIA</div>

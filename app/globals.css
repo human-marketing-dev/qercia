@@ -1,36 +1,109 @@
 @import "tailwindcss";
 
+/* Paleta y tipografía tomadas de la referencia (somervilles.co.uk): fondo crema, tarjetas
+   oscuras con esquinas de 20px, sans grotesca en peso 500 con tracking negativo y un
+   acento rojo que solo aparece en flechas, subrayados y detalles. */
 :root {
-  --background: #f6f3ee;
-  --foreground: #1e221d;
+  --background: #fffcf5;
+  --foreground: #262324;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-sand: #ebe5da;
-  --color-stone: #6f685e;
-  --color-line: #d9d1c3;
-  --color-moss: #3f4a3a;
-  --color-moss-dark: #2c3429;
-  --color-clay: #a8714c;
-  --font-sans: var(--font-geist-sans);
-  --font-serif: var(--font-instrument-serif);
+  --color-ink: #262324;
+  --color-body: #444444;
+  --color-muted: #6b6767;
+  --color-beige: #eceae0;
+  --color-line: #d4d1c6;
+  --color-accent: #e31936;
+  --font-sans: var(--font-inter-tight);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  color: var(--color-body);
+  font-family: var(--font-inter-tight), "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    text-wrap: balance;
+  }
+}
+
+/* Subrayado que se dibuja de izquierda a derecha y sigue los saltos de línea. */
+.underline-draw {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.4s ease;
+}
+.group:hover .underline-draw,
+.underline-draw:hover,
+.underline-draw.is-static {
+  background-size: 100% 2px;
+}
+
+/* Títulos que entran línea por línea desde abajo (como el banner de la referencia). */
+.split-reveal > span {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+.split-reveal > span > span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  animation: rise 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation-delay: calc(var(--i) * 0.06s + 0.1s);
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Bloques que aparecen al entrar en pantalla (solo si hay JS, para no ocultar contenido). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-delay: var(--delay, 0s);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .split-reveal > span > span {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

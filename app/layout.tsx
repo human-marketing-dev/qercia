@@ -1,17 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
+import { RevealOnScroll } from "@/app/_components/reveal";
 import { SITE_URL, site } from "@/app/_lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Sustituto libre más cercano a Helvetica Now, la tipografía de la referencia.
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -31,16 +28,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f3ee",
+  themeColor: "#fffcf5",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es-MX"
-      className={`${geistSans.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${interTight.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {children}
+        <RevealOnScroll />
+      </body>
     </html>
   );
 }
