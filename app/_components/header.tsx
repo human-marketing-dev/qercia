@@ -57,8 +57,8 @@ export function Header() {
             </nav>
           </div>
 
-          <a href="#inicio" className="text-xl font-medium tracking-[0.28em] md:text-2xl" aria-label="Qercia, inicio">
-            QERCIA
+          <a href="#inicio" aria-label="Qercia, inicio">
+            <span aria-hidden className="logo h-[64px] w-[64px] md:h-[88px] md:w-[88px]" />
           </a>
 
           <div className="flex justify-end">

@@ -1,6 +1,13 @@
 import { Photo } from "@/app/_components/photo";
 import { Arrow, Button, Eyebrow, SplitTitle, TextLink, h2, h3, inner } from "@/app/_components/ui";
 import { amenities, faqs, keyFacts, nav, services, site, whatsappHref } from "@/app/_lib/site";
+import fotoAlberca from "@/public/fotos/01_Qercia_Alberca.webp";
+import fotoTerraza from "@/public/fotos/03_Qercia_Terraza.webp";
+import fotoExterior from "@/public/fotos/04_Qercia_Exterior.webp";
+import fotoCentroCulinario from "@/public/fotos/Qercia_CentroCulinario_interior.webp";
+import fotoCaminoAlDiente from "@/public/fotos/Render Camino al Diente.webp";
+import fotoAndador from "@/public/fotos/Render Paisajismo Calle Real de Catorce 4.webp";
+import fotoJuegos from "@/public/fotos/Render Paisajismo Calle Real de Catorce 5.webp";
 
 const delay = (i: number) => ({ "--delay": `${i * 0.08}s` }) as React.CSSProperties;
 
@@ -10,8 +17,13 @@ export function Hero() {
       id="inicio"
       className="relative flex h-[100svh] min-h-[620px] items-end overflow-hidden rounded-b-[20px] text-background md:h-[720px] md:min-h-0"
     >
-      {/* TODO: reemplazar por foto aérea real (next/image con priority) o video en loop. */}
-      <Photo label="Vista aérea del fraccionamiento" tone="dark" className="absolute inset-0" />
+      <Photo
+        src={fotoExterior}
+        alt="Casa club de Qercia iluminada de noche en lo alto del cerro, rodeada de montañas"
+        sizes="100vw"
+        eager
+        className="absolute inset-0"
+      />
       <div aria-hidden className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-black/45 to-transparent" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
@@ -104,7 +116,12 @@ export function Lotes() {
         </div>
 
         <div className="group mt-14 overflow-hidden rounded-[20px]" data-reveal>
-          <Photo label="Lote con vista a la sierra" className="aspect-[4/3] w-full md:aspect-[16/7]" />
+          <Photo
+            src={fotoCaminoAlDiente}
+            alt="Calle de Camino al Diente con árboles y jardineras a ambos lados"
+            sizes="(min-width: 1360px) 1230px, 100vw"
+            className="aspect-[4/3] w-full md:aspect-[16/7]"
+          />
         </div>
 
         <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-[30px]">
@@ -225,6 +242,12 @@ export function Ubicacion() {
   );
 }
 
+const gallery = [
+  { src: fotoTerraza, alt: "Terraza techada con camastros y vista a las montañas" },
+  { src: fotoCentroCulinario, alt: "Interior del centro culinario con mesas y barra" },
+  { src: fotoJuegos, alt: "Andador arbolado con área de juegos infantiles" },
+];
+
 export function Amenidades() {
   return (
     <section id="amenidades" className="rounded-[20px] bg-ink py-[90px] text-background/75 md:py-[100px]">
@@ -243,9 +266,22 @@ export function Amenidades() {
             </div>
           </div>
           <div className="group overflow-hidden rounded-[20px] lg:col-span-7" data-reveal style={delay(1)}>
-            <Photo label="Alberca infinity y áreas verdes" tone="dark" className="aspect-[4/3] w-full" />
+            <Photo
+              src={fotoAlberca}
+              alt="Alberca infinity con camastros y vista a la sierra"
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="aspect-[4/3] w-full"
+            />
           </div>
         </div>
+
+        <ul className="mt-3 grid gap-3 sm:grid-cols-3 lg:mt-[30px] lg:gap-[30px]">
+          {gallery.map((photo, i) => (
+            <li key={photo.alt} className="group overflow-hidden rounded-[20px]" data-reveal style={delay(i)}>
+              <Photo src={photo.src} alt={photo.alt} sizes="(min-width: 640px) 33vw, 100vw" className="aspect-[4/3] w-full" />
+            </li>
+          ))}
+        </ul>
 
         <ul className="mt-14 grid grid-cols-2 gap-x-[30px] border-t border-white/15 sm:grid-cols-3 lg:grid-cols-5">
           {amenities.map((name, i) => (
@@ -272,7 +308,12 @@ export function Seguridad() {
     <section id="seguridad" className="py-[90px] md:py-[100px]">
       <div className={`grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 ${inner}`}>
         <div className="group overflow-hidden rounded-[20px] lg:col-span-6" data-reveal>
-          <Photo label="Acceso principal" className="aspect-square w-full" />
+          <Photo
+            src={fotoAndador}
+            alt="Andador peatonal arbolado junto a la calle del fraccionamiento"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="aspect-square w-full"
+          />
         </div>
         <div className="lg:col-span-5 lg:col-start-8" data-reveal style={delay(1)}>
           <Eyebrow>Seguridad</Eyebrow>
@@ -345,10 +386,13 @@ export function Footer() {
   return (
     <footer className="overflow-hidden rounded-t-[20px] bg-ink text-background/60 md:mx-10">
       <div className={`pt-[90px] md:pt-[100px] ${inner}`}>
-        <a href="#contacto" className="group inline-flex items-center gap-4 text-[30px] font-medium leading-tight tracking-[-0.02em] text-background md:text-[42px]">
-          <span className="underline-draw is-static pb-1">Agenda una visita</span>
-          <Arrow className="h-5 w-7" />
-        </a>
+        <div className="flex items-end justify-between gap-6">
+          <a href="#contacto" className="group inline-flex items-center gap-4 text-[30px] font-medium leading-tight tracking-[-0.02em] text-background md:text-[42px]">
+            <span className="underline-draw is-static pb-1">Agenda una visita</span>
+            <Arrow className="h-5 w-7" />
+          </a>
+          <span role="img" aria-label="Qercia residencial" className="logo h-24 w-24 shrink-0 text-background md:h-32 md:w-32" />
+        </div>
 
         <div className="mt-14 grid gap-10 border-t border-white/15 pt-10 text-[15px] leading-relaxed md:grid-cols-3">
           <nav aria-label="Pie de página">

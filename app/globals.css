@@ -107,3 +107,11 @@ body {
     transition: none;
   }
 }
+
+/* Logo como máscara: toma el color del texto (currentColor), así cambia de blanco a
+   oscuro junto con el header. El archivo original es azul marino sobre transparente. */
+.logo {
+  display: block;
+  background-color: currentColor;
+  mask: url(/qercia-logo.webp) center / contain no-repeat;
+}
