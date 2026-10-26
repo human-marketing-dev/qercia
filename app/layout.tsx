@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     locale: "es_MX",
     url: "/",
     siteName: site.name,
-    title: "Qercia: lotes residenciales en Camino al Diente",
-    description: "Lotes desde 500 m², listos para escriturar, cerca de San Pedro.",
+    title: "Qercia Residencial: vivir entre montañas en Camino al Diente",
+    description: "Terrenos desde 500 m² en Camino al Diente, Carretera Nacional. Desde $8.3 MDP, listos para escriturar.",
   },
   twitter: { card: "summary_large_image" },
 };

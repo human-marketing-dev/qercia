@@ -48,7 +48,7 @@ export function ContactForm() {
         </select>
       </label>
       <label className="flex flex-col gap-2.5">
-        <span className={label}>Tamaño de lote que buscas (opcional)</span>
+        <span className={label}>Tamaño de terreno que buscas (opcional)</span>
         <input name="tamano" placeholder="p. ej. 600 m²" className={field} />
       </label>
 

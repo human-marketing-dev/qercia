@@ -3,14 +3,14 @@ import { Header } from "@/app/_components/header";
 import { Eyebrow, h2 } from "@/app/_components/ui";
 import {
   Amenidades,
-  Desarrollador,
+  Concepto,
   Footer,
   Hero,
+  Infraestructura,
   KeyFacts,
-  Lotes,
+  Parques,
   Preguntas,
-  Seguridad,
-  Servicios,
+  Respaldo,
   Ubicacion,
 } from "@/app/_components/sections";
 import { SITE_URL, faqs, site } from "@/app/_lib/site";
@@ -24,25 +24,18 @@ const jsonLd = {
       name: site.name,
       url: `${SITE_URL}/`,
       inLanguage: "es-MX",
-      publisher: { "@id": `${SITE_URL}/#bono` },
-    },
-    {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#bono`,
-      name: site.developer,
-      // TODO: url, logo y sameAs (redes y Google Business) de Bono.
     },
     {
       "@type": "Place",
       "@id": `${SITE_URL}/#qercia`,
       name: site.name,
       description:
-        "Fraccionamiento de lotes residenciales desde 500 m² en Camino al Diente, Cañada del Sur, Monterrey.",
+        "Terrenos residenciales desde 500 m² en Camino al Diente, Carretera Nacional, con más de 27,000 m² de áreas verdes.",
       address: {
         "@type": "PostalAddress",
         streetAddress: site.address.street,
         addressLocality: site.address.city,
-        addressRegion: site.address.region,
+        addressRegion: site.address.regionFull,
         addressCountry: site.address.country,
       },
       // TODO: geo (latitud/longitud) y código postal.
@@ -69,20 +62,20 @@ export default function Home() {
       <main className="md:px-10">
         <Hero />
         <KeyFacts />
-        <Lotes />
-        <Servicios />
-        <Ubicacion />
+        <Concepto />
+        <Parques />
         <Amenidades />
-        <Seguridad />
-        <Desarrollador />
+        <Infraestructura />
+        <Ubicacion />
+        <Respaldo />
         <Preguntas />
         <section id="contacto" className="py-[90px] md:py-[100px]">
           <div className="mx-auto grid w-full max-w-[1230px] gap-14 px-5 md:px-[65px] lg:grid-cols-12 lg:gap-10 xl:px-0">
             <div className="lg:col-span-5" data-reveal>
               <Eyebrow>Contacto</Eyebrow>
-              <h2 className={`${h2} text-ink`}>Agenda tu visita al terreno</h2>
+              <h2 className={`${h2} text-ink`}>Agenda tu visita a Qercia</h2>
               <p className="mt-6 max-w-md">
-                Recorre los lotes disponibles con un asesor y llévate el plano para tu arquitecto.
+                Conoce Qercia con un asesor. Te muestra los terrenos disponibles y te explica el esquema de pago.
               </p>
             </div>
             <div className="lg:col-span-6 lg:col-start-7" data-reveal>
