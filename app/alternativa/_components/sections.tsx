@@ -18,8 +18,8 @@ import fotoAlberca from "@/public/fotos/01_Qercia_Alberca.webp";
 import fotoTerraza from "@/public/fotos/03_Qercia_Terraza.webp";
 import fotoExterior from "@/public/fotos/04_Qercia_Exterior.webp";
 import fotoCentroCulinario from "@/public/fotos/Qercia_CentroCulinario_interior.webp";
-import fotoCaminoAlDiente from "@/public/fotos/Render Camino al Diente.webp";
-import fotoAndador from "@/public/fotos/Render Paisajismo Calle Real de Catorce 4.webp";
+import fotoAerea2 from "@/public/fotos/aerea-qercia-2.webp";
+import fotoAerea4 from "@/public/fotos/aerea-qercia-4.webp";
 
 const delay = (i: number) => ({ "--delay": `${i * 0.1}s` }) as React.CSSProperties;
 const section = "py-[100px] md:py-[140px]";
@@ -126,8 +126,8 @@ export function Concepto() {
       <div className={`mt-20 md:mt-28 ${wrap}`}>
         <div data-reveal="image">
           <Photo
-            src={fotoCaminoAlDiente}
-            alt="Render de una calle de Camino al Diente con árboles y jardineras a ambos lados"
+            src={fotoAerea2}
+            alt="Vista aérea de Qercia: calles entre áreas verdes y montañas en Camino al Diente"
             sizes="(min-width: 1296px) 1200px, 100vw"
             className="aspect-[4/3] w-full md:aspect-[16/7]"
           />
@@ -183,10 +183,11 @@ export function Parques() {
       <div className={`grid gap-14 py-[100px] md:py-[140px] lg:grid-cols-12 lg:items-center lg:gap-12 ${wrap}`}>
         <div data-reveal="image" className="lg:col-span-6">
           <Photo
-            src={fotoAndador}
-            alt="Render de un andador arbolado junto a la calle del desarrollo"
+            src={fotoAerea4}
+            alt="Vista aérea de Qercia con la sierra al fondo y el cielo despejado"
             sizes="(min-width: 1296px) 600px, (min-width: 1024px) 50vw, 100vw"
-            className="aspect-[4/3] w-full lg:aspect-[6/7]"
+            position="50% 30%"
+            className="aspect-[4/5] w-full"
           />
         </div>
         <div className="flex flex-col justify-center lg:col-span-5 lg:col-start-8" data-reveal>

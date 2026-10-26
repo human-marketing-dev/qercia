@@ -8,12 +8,15 @@ export function Photo({
   sizes,
   className = "",
   eager = false,
+  position,
 }: {
   src: StaticImageData;
   alt: string;
   sizes: string;
   className?: string;
   eager?: boolean;
+  // Punto de la foto que se conserva al recortar, p. ej. "50% 30%".
+  position?: string;
 }) {
   return (
     <div className={`${className.includes("absolute") ? "" : "relative"} overflow-hidden bg-beige ${className}`}>
@@ -26,6 +29,7 @@ export function Photo({
         quality={90}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
+        style={position ? { objectPosition: position } : undefined}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
     </div>
