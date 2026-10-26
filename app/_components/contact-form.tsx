@@ -6,16 +6,37 @@ import { Arrow } from "@/app/_components/ui";
 
 const initialState: LeadState = { status: "idle", message: "" };
 
-const field =
-  "h-[52px] w-full rounded-[4px] border border-line bg-white px-4 text-[17px] text-ink placeholder:text-muted/60 transition-colors focus:border-ink focus:outline-none";
-const label = "text-[14px] font-medium leading-none text-ink";
+const styles = {
+  default: {
+    field:
+      "h-[52px] w-full rounded-[4px] border border-line bg-white px-4 text-[17px] text-ink placeholder:text-muted/60 transition-colors focus:border-ink focus:outline-none",
+    label: "text-[14px] font-medium leading-none text-ink",
+    done: "text-[28px] font-medium leading-snug tracking-[-0.02em] text-ink md:text-[34px]",
+    button:
+      "rounded-full bg-ink px-[30px] py-[18px] text-[17px] font-medium text-background hover:bg-black",
+    arrow: "text-accent",
+    error: "text-accent",
+  },
+  // Versión de /alternativa: campos de línea, esquinas rectas y paleta natural.
+  alt: {
+    field:
+      "h-[52px] w-full rounded-none border-0 border-b border-hair bg-transparent px-0 text-[17px] text-forest placeholder:text-moss/50 transition-colors focus:border-forest focus:outline-none",
+    label: "text-[12px] uppercase leading-none tracking-[0.16em] text-moss",
+    done: "font-serif text-[34px] leading-snug text-forest md:text-[42px]",
+    button:
+      "rounded-none bg-forest px-9 py-5 text-[13px] uppercase tracking-[0.18em] text-ivory hover:bg-moss",
+    arrow: "text-ivory",
+    error: "text-earth",
+  },
+};
 
-export function ContactForm() {
+export function ContactForm({ variant = "default" }: { variant?: keyof typeof styles }) {
   const [state, formAction, pending] = useActionState(submitLead, initialState);
+  const { field, label, ...st } = styles[variant];
 
   if (state.status === "ok") {
     return (
-      <p role="status" className="text-[28px] font-medium leading-snug tracking-[-0.02em] text-ink md:text-[34px]">
+      <p role="status" className={st.done}>
         {state.message}
       </p>
     );
@@ -53,19 +74,19 @@ export function ContactForm() {
       </label>
 
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[14px] leading-relaxed text-muted">
+        <p className={`text-[14px] leading-relaxed ${variant === "alt" ? "text-moss" : "text-muted"}`}>
           Te contactamos por WhatsApp o llamada. No compartimos tus datos.
         </p>
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-ink px-[30px] py-[18px] text-[17px] font-medium leading-none text-background transition-colors hover:bg-black disabled:opacity-60"
+          className={`group inline-flex shrink-0 items-center justify-center gap-3 leading-none transition-colors disabled:opacity-60 ${st.button}`}
         >
           {pending ? "Enviando…" : "Quiero visitar Qercia"}
-          <Arrow />
+          <Arrow color={st.arrow} />
         </button>
       </div>
-      <p aria-live="polite" className="text-[14px] text-accent sm:col-span-2">
+      <p aria-live="polite" className={`text-[14px] sm:col-span-2 ${st.error}`}>
         {state.status === "error" ? state.message : ""}
       </p>
     </form>

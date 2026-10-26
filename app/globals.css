@@ -17,7 +17,16 @@
   --color-beige: #eceae0;
   --color-line: #d4d1c6;
   --color-accent: #e31936;
+  /* Paleta natural de la alternativa (/alternativa): verdes, tierra y cielo del brief. */
+  --color-ivory: #f5f1e8;
+  --color-stone: #e7e0d2;
+  --color-forest: #1f2c24;
+  --color-moss: #4a5d48;
+  --color-earth: #9c6b43;
+  --color-sky: #c9d5d6;
+  --color-hair: #d6cdbb;
   --font-sans: var(--font-inter-tight);
+  --font-serif: var(--font-cormorant);
 }
 
 html {

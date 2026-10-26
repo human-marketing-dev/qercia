@@ -1,7 +1,7 @@
 // Piezas de estilo compartidas por las secciones.
 import { Fragment } from "react";
 
-export function Arrow({ className = "" }: { className?: string }) {
+export function Arrow({ className = "", color = "text-accent" }: { className?: string; color?: string }) {
   return (
     <svg
       aria-hidden
@@ -11,7 +11,7 @@ export function Arrow({ className = "" }: { className?: string }) {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
-      className={`text-accent transition-transform duration-300 group-hover:translate-x-1 ${className}`}
+      className={`${color} transition-transform duration-300 group-hover:translate-x-1 ${className}`}
     >
       <path d="M0 6h14M9 1l5 5-5 5" />
     </svg>
