@@ -2,7 +2,8 @@
 // Inter Tight y Baskerville solo como acento (cifras, palabras en cursiva, firma).
 import { Arrow } from "@/app/_components/ui";
 
-export const wrap = "mx-auto w-full max-w-[1320px] px-6 md:px-12";
+// Contenido a 1200 px como máximo; el padding lateral queda fuera de esos 1200.
+export const wrap = "mx-auto w-full max-w-[1248px] px-6 md:max-w-[1296px] md:px-12";
 export const display = "font-sans font-normal tracking-[-0.025em]";
 export const accent = "font-serif font-normal tracking-[-0.01em]";
 export const h2 = `${display} text-[36px] leading-[1.1] md:text-[52px]`;

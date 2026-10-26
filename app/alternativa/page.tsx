@@ -1,9 +1,11 @@
 import { ContactForm } from "@/app/_components/contact-form";
 import { Header } from "@/app/alternativa/_components/header";
+import { Parallax } from "@/app/alternativa/_components/motion";
 import { Eyebrow, h2, wrap } from "@/app/alternativa/_components/ui";
 import {
   Amenidades,
   Concepto,
+  Franja,
   Footer,
   Hero,
   Infraestructura,
@@ -24,6 +26,7 @@ export default function Alternativa() {
         <Hero />
         <KeyFacts />
         <Concepto />
+        <Franja />
         <Parques />
         <Amenidades />
         <Infraestructura />
@@ -46,6 +49,7 @@ export default function Alternativa() {
         </section>
       </main>
       <Footer />
+      <Parallax />
     </>
   );
 }

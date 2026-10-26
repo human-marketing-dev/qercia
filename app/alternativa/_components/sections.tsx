@@ -1,4 +1,5 @@
 import { Photo } from "@/app/_components/photo";
+import { CountUp } from "@/app/alternativa/_components/motion";
 import { SplitTitle } from "@/app/_components/ui";
 import { Button, Eyebrow, TextLink, accent, caps, display, h2, h3, wrap } from "@/app/alternativa/_components/ui";
 import {
@@ -26,26 +27,32 @@ const section = "py-[100px] md:py-[140px]";
 export function Hero() {
   return (
     <section id="inicio" className="relative flex h-[100svh] min-h-[640px] items-end overflow-hidden text-ivory">
-      <Photo
-        src={fotoExterior}
-        alt="Render de la casa club de Qercia iluminada de noche, rodeada de montañas"
-        sizes="100vw"
-        eager
-        className="absolute inset-0"
-      />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-midnight/50 via-midnight/10 to-midnight/70" />
+      <div data-parallax="0.3" className="hero-zoom absolute inset-0">
+        <Photo
+          src={fotoExterior}
+          alt="Render de la casa club de Qercia iluminada de noche, rodeada de montañas"
+          sizes="100vw"
+          eager
+          className="absolute inset-0"
+        />
+      </div>
+      {/* Velo para que el texto se lea sobre la foto. */}
+      <div aria-hidden className="absolute inset-0 bg-midnight/35" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-midnight/50 via-transparent to-midnight/80" />
 
       <div className={`relative pb-16 text-center md:pb-24 ${wrap}`}>
-        <p className={`${caps} text-ivory/80`}>Camino al Diente · Carretera Nacional</p>
+        <p className={`hero-in ${caps} text-ivory/85`} style={{ "--i": 0 } as React.CSSProperties}>
+          Camino al Diente · Carretera Nacional
+        </p>
         <SplitTitle
           text="Un oasis urbano para vivir entre montañas"
           className={`${display} mx-auto mt-6 max-w-[980px] text-[44px] leading-[1.05] md:text-[80px]`}
         />
-        <p className="mx-auto mt-8 max-w-[560px] text-[17px] leading-[1.7] text-ivory/85">
+        <p className="hero-in mx-auto mt-8 max-w-[560px] text-[17px] leading-[1.7] text-ivory/90" style={{ "--i": 6 } as React.CSSProperties}>
           Terrenos desde 500 metros cuadrados en Camino al Diente, desde 8.3 millones de pesos. Listos para escriturar,
           con entrega en 2027 y 12 mensualidades.
         </p>
-        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+        <div className="hero-in mt-10 flex flex-col justify-center gap-3 sm:flex-row" style={{ "--i": 8 } as React.CSSProperties}>
           <Button href="#contacto" tone="light">
             Agenda una visita
           </Button>
@@ -55,7 +62,9 @@ export function Hero() {
             </Button>
           )}
         </div>
-        <p className="mt-12 text-[12px] text-ivory/65">{disclaimer}</p>
+        <p className="hero-in mt-12 text-[12px] text-ivory/70" style={{ "--i": 10 } as React.CSSProperties}>
+          {disclaimer}
+        </p>
       </div>
     </section>
   );
@@ -114,13 +123,15 @@ export function Concepto() {
         </p>
       </div>
 
-      <div className="mt-20 md:mt-28" data-reveal>
-        <Photo
-          src={fotoCaminoAlDiente}
-          alt="Render de una calle de Camino al Diente con árboles y jardineras a ambos lados"
-          sizes="100vw"
-          className="aspect-[4/3] w-full md:aspect-[21/9]"
-        />
+      <div className={`mt-20 md:mt-28 ${wrap}`}>
+        <div data-reveal="image">
+          <Photo
+            src={fotoCaminoAlDiente}
+            alt="Render de una calle de Camino al Diente con árboles y jardineras a ambos lados"
+            sizes="(min-width: 1296px) 1200px, 100vw"
+            className="aspect-[4/3] w-full md:aspect-[16/7]"
+          />
+        </div>
       </div>
 
       <ol className={`mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-16 ${wrap}`}>
@@ -144,20 +155,47 @@ const parks = [
   },
 ];
 
+const marqueeWords = ["Vivir entre montañas", "Oasis urbano", "Camino al Diente", "Carretera Nacional"];
+
+export function Franja() {
+  const row = [...marqueeWords, ...marqueeWords];
+  return (
+    <div aria-hidden className="overflow-hidden border-y border-hair py-7 md:py-9">
+      <div className="marquee">
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0">
+            {row.map((word, i) => (
+              <span key={i} className="flex items-center whitespace-nowrap">
+                <span className={`${accent} px-8 text-[30px] italic text-navy md:px-12 md:text-[44px]`}>{word}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-sky" />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Parques() {
   return (
     <section id="parques" className="bg-navy text-ivory/75">
-      <div className="grid lg:grid-cols-2">
-        <Photo
-          src={fotoAndador}
-          alt="Render de un andador arbolado junto a la calle del desarrollo"
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[4/5] w-full lg:aspect-auto lg:min-h-[860px]"
-        />
-        <div className="flex flex-col justify-center px-6 py-[100px] md:px-16 lg:px-20 xl:px-28" data-reveal>
+      <div className={`grid gap-14 py-[100px] md:py-[140px] lg:grid-cols-12 lg:items-center lg:gap-12 ${wrap}`}>
+        <div data-reveal="image" className="lg:col-span-6">
+          <Photo
+            src={fotoAndador}
+            alt="Render de un andador arbolado junto a la calle del desarrollo"
+            sizes="(min-width: 1296px) 600px, (min-width: 1024px) 50vw, 100vw"
+            className="aspect-[4/3] w-full lg:aspect-[6/7]"
+          />
+        </div>
+        <div className="flex flex-col justify-center lg:col-span-5 lg:col-start-8" data-reveal>
           <Eyebrow light>Parques y paisajismo</Eyebrow>
           <h2 className={`${h2} text-ivory`}>Áreas verdes con paisajismo de primer nivel</h2>
-          <p className={`${accent} mt-12 text-[64px] leading-none text-sky md:text-[96px]`}>27,000 m²</p>
+          <p className={`${accent} mt-12 text-[64px] leading-none text-sky md:text-[88px]`}>
+            <CountUp to={27000} />
+            &nbsp;m²
+          </p>
           <p className="mt-6 max-w-md text-[17px] leading-[1.8]">
             Más de 27,000 metros cuadrados de áreas verdes, con paisajismo de Harari Landscape, la firma que también
             ejecuta la urbanización y el paisajismo de Camino al Diente.
@@ -200,12 +238,12 @@ export function Amenidades() {
         </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7" data-reveal>
+          <div className="lg:col-span-7" data-reveal="image">
             <Photo
               src={fotoAlberca}
               alt="Render de la alberca con camastros y vista a la sierra"
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="aspect-[4/5] w-full"
+              sizes="(min-width: 1296px) 700px, (min-width: 1024px) 58vw, 100vw"
+              className="aspect-[4/3] w-full lg:aspect-[7/6]"
             />
           </div>
           <div className="flex flex-col lg:col-span-5">
@@ -226,7 +264,9 @@ export function Amenidades() {
             </ul>
             <div className="mt-12 grid grid-cols-2 gap-4 lg:mt-auto lg:pt-12">
               {gallery.map((photo) => (
-                <Photo key={photo.alt} src={photo.src} alt={photo.alt} sizes="(min-width: 1024px) 20vw, 50vw" className="aspect-square w-full" />
+                <div key={photo.alt} data-reveal="image">
+                  <Photo src={photo.src} alt={photo.alt} sizes="(min-width: 1024px) 250px, 50vw" className="aspect-[4/3] w-full" />
+                </div>
               ))}
             </div>
           </div>

@@ -23,6 +23,7 @@ export function Photo({
         fill
         sizes={sizes}
         placeholder="blur"
+        quality={90}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

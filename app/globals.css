@@ -125,3 +125,78 @@ body {
   background-color: currentColor;
   mask: url(/qercia-logo.webp) center / contain no-repeat;
 }
+
+/* ---------- Animaciones de /alternativa ---------- */
+
+/* Foto del hero: entra con un acercamiento lento. */
+.hero-zoom {
+  animation: hero-zoom 2.8s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+@keyframes hero-zoom {
+  from {
+    scale: 1.15;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+/* Textos del hero: suben uno tras otro después del título. */
+.hero-in {
+  animation: rise-in 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+  animation-delay: calc(var(--i, 0) * 0.08s + 0.2s);
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Imágenes que se descubren de abajo hacia arriba mientras la foto se aleja. */
+.js [data-reveal="image"] {
+  opacity: 1;
+  transform: none;
+  overflow: hidden;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: var(--delay, 0s);
+}
+.js [data-reveal="image"] img {
+  scale: 1.2;
+  transition: scale 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.js [data-reveal="image"].is-in {
+  clip-path: inset(0);
+}
+.js [data-reveal="image"].is-in img {
+  scale: 1;
+}
+
+/* Franja de texto en movimiento continuo. */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom,
+  .hero-in,
+  .marquee {
+    animation: none;
+  }
+  .js [data-reveal="image"] {
+    clip-path: none;
+    transition: none;
+  }
+  .js [data-reveal="image"] img {
+    scale: 1;
+    transition: none;
+  }
+}
