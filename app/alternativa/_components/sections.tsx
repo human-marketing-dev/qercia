@@ -18,7 +18,7 @@ import fotoAlberca from "@/public/fotos/01_Qercia_Alberca.webp";
 import fotoTerraza from "@/public/fotos/03_Qercia_Terraza.webp";
 import fotoExterior from "@/public/fotos/04_Qercia_Exterior.webp";
 import fotoCentroCulinario from "@/public/fotos/Qercia_CentroCulinario_interior.webp";
-import fotoAerea2 from "@/public/fotos/aerea-qercia-2.webp";
+import fotoAerea1 from "@/public/fotos/aerea-qercia-1.webp";
 import fotoAerea4 from "@/public/fotos/aerea-qercia-4.webp";
 
 const delay = (i: number) => ({ "--delay": `${i * 0.1}s` }) as React.CSSProperties;
@@ -126,8 +126,9 @@ export function Concepto() {
       <div className={`mt-20 md:mt-28 ${wrap}`}>
         <div data-reveal="image">
           <Photo
-            src={fotoAerea2}
-            alt="Vista aérea de Qercia: calles entre áreas verdes y montañas en Camino al Diente"
+            src={fotoAerea1}
+            alt="Vista aérea de Qercia: calles entre áreas verdes con montañas alrededor en Camino al Diente"
+            position="50% 25%"
             sizes="(min-width: 1296px) 1200px, 100vw"
             className="aspect-[4/3] w-full md:aspect-[16/7]"
           />
