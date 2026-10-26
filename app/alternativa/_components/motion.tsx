@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -64,4 +64,50 @@ export function Parallax() {
   }, []);
 
   return null;
+}
+
+// Pregunta que se abre y cierra con transición de altura. La respuesta siempre está en el
+// HTML (solo se oculta), así la leen los buscadores.
+export function Accordion({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+
+  return (
+    <div className="border-b border-hair">
+      <h3>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={id}
+          onClick={() => setOpen((v) => !v)}
+          className="flex w-full items-center justify-between gap-6 py-7 text-left text-[20px] leading-snug tracking-[-0.025em] text-navy md:text-[22px]"
+        >
+          {question}
+          <span
+            aria-hidden
+            className={`text-[26px] font-light leading-none transition-transform duration-500 ${open ? "rotate-45" : ""}`}
+          >
+            +
+          </span>
+        </button>
+      </h3>
+      <div
+        id={id}
+        role="region"
+        className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden" inert={!open}>
+          <p
+            className={`max-w-2xl pb-8 text-[17px] leading-[1.8] text-midnight/75 transition-transform duration-500 ${
+              open ? "translate-y-0" : "-translate-y-3"
+            }`}
+          >
+            {answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }

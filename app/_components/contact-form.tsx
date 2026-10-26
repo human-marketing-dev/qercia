@@ -48,15 +48,15 @@ export function ContactForm({ variant = "default" }: { variant?: keyof typeof st
         <span className={label}>Nombre</span>
         <input name="nombre" required autoComplete="name" className={field} />
       </label>
-      <label className="flex flex-col gap-2.5">
+      <label className="flex flex-col justify-end gap-2.5">
         <span className={label}>WhatsApp</span>
         <input name="whatsapp" type="tel" required autoComplete="tel" inputMode="tel" className={field} />
       </label>
-      <label className="flex flex-col gap-2.5">
+      <label className="flex flex-col justify-end gap-2.5">
         <span className={label}>Correo</span>
         <input name="correo" type="email" autoComplete="email" className={field} />
       </label>
-      <label className="flex flex-col gap-2.5">
+      <label className="flex flex-col justify-end gap-2.5">
         <span className={label}>¿Cuándo planeas construir?</span>
         <select name="plazo" defaultValue="" className={field}>
           <option value="" disabled>
@@ -68,8 +68,8 @@ export function ContactForm({ variant = "default" }: { variant?: keyof typeof st
           <option>Solo estoy comparando</option>
         </select>
       </label>
-      <label className="flex flex-col gap-2.5">
-        <span className={label}>Tamaño de terreno que buscas (opcional)</span>
+      <label className="flex flex-col justify-end gap-2.5">
+        <span className={label}>Tamaño de terreno (opcional)</span>
         <input name="tamano" placeholder="p. ej. 600 m²" className={field} />
       </label>
 

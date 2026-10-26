@@ -1,5 +1,5 @@
 import { Photo } from "@/app/_components/photo";
-import { CountUp } from "@/app/alternativa/_components/motion";
+import { Accordion, CountUp } from "@/app/alternativa/_components/motion";
 import { SplitTitle } from "@/app/_components/ui";
 import { Button, Eyebrow, TextLink, accent, caps, display, h2, h3, wrap } from "@/app/alternativa/_components/ui";
 import {
@@ -238,12 +238,13 @@ export function Amenidades() {
         </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
+          {/* En escritorio la foto se estira hasta el final de la columna derecha. */}
           <div className="lg:col-span-7" data-reveal="image">
             <Photo
               src={fotoAlberca}
               alt="Render de la alberca con camastros y vista a la sierra"
               sizes="(min-width: 1296px) 700px, (min-width: 1024px) 58vw, 100vw"
-              className="aspect-[4/3] w-full lg:aspect-[7/6]"
+              className="aspect-[4/3] w-full lg:aspect-auto lg:h-full"
             />
           </div>
           <div className="flex flex-col lg:col-span-5">
@@ -431,18 +432,7 @@ export function Preguntas() {
         </div>
         <div className="border-t border-hair lg:col-span-7 lg:col-start-6" data-reveal style={delay(1)}>
           {faqs.map((faq) => (
-            <details key={faq.q} className="group border-b border-hair">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 [&::-webkit-details-marker]:hidden">
-                <h3 className={`${display} text-[20px] leading-snug text-navy md:text-[22px]`}>{faq.q}</h3>
-                <span
-                  aria-hidden
-                  className="text-[26px] font-light leading-none text-navy transition-transform duration-300 group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p className="max-w-2xl pb-8 text-[17px] leading-[1.8] text-midnight/75">{faq.a}</p>
-            </details>
+            <Accordion key={faq.q} question={faq.q} answer={faq.a} />
           ))}
         </div>
       </div>
@@ -456,12 +446,6 @@ export function Footer() {
       <div className={`py-[100px] text-center md:py-[130px] ${wrap}`}>
         <span role="img" aria-label="Qercia Residencial" className="logo mx-auto h-24 w-24 text-ivory md:h-28 md:w-28" />
         <p className={`${accent} mt-10 text-[38px] italic leading-tight text-ivory md:text-[64px]`}>Vivir entre montañas</p>
-        <a
-          href="#contacto"
-          className={`mt-10 inline-block border border-ivory/50 px-9 py-5 text-ivory transition-colors hover:bg-ivory hover:text-navy ${caps}`}
-        >
-          Agenda una visita
-        </a>
       </div>
 
       <div className={`grid gap-8 border-t border-white/15 py-10 text-[14px] leading-relaxed md:grid-cols-3 ${wrap}`}>
