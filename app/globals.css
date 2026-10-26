@@ -17,16 +17,17 @@
   --color-beige: #eceae0;
   --color-line: #d4d1c6;
   --color-accent: #e31936;
-  /* Paleta natural de la alternativa (/alternativa): verdes, tierra y cielo del brief. */
-  --color-ivory: #f5f1e8;
-  --color-stone: #e7e0d2;
-  --color-forest: #1f2c24;
-  --color-moss: #4a5d48;
-  --color-earth: #9c6b43;
-  --color-sky: #c9d5d6;
-  --color-hair: #d6cdbb;
+  /* Paleta oficial de Qercia, usada en /alternativa. stone y hair son mezclas de
+     arena (#bfb8a8) sobre marfil para fondos suaves y líneas finas. */
+  --color-ivory: #fefcf4;
+  --color-navy: #011b54;
+  --color-midnight: #01062c;
+  --color-sky: #81afe6;
+  --color-sand: #bfb8a8;
+  --color-stone: #f1eee5;
+  --color-hair: #dcd8cd;
   --font-sans: var(--font-inter-tight);
-  --font-serif: var(--font-cormorant);
+  --font-serif: var(--font-accent);
 }
 
 html {

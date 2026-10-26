@@ -21,7 +21,7 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color] duration-500 ${
-        solid ? "border-b border-hair bg-ivory/95 text-forest backdrop-blur" : "border-b border-white/20 text-ivory"
+        solid ? "border-b border-hair bg-ivory/95 text-navy backdrop-blur" : "border-b border-white/20 text-ivory"
       }`}
     >
       <div className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center px-6 md:h-[92px] md:px-12">
@@ -55,7 +55,7 @@ export function Header() {
           <a
             href="#contacto"
             className={`hidden border px-7 py-4 leading-none transition-colors lg:inline-block ${caps} ${
-              solid ? "border-forest hover:bg-forest hover:text-ivory" : "border-ivory/70 hover:bg-ivory hover:text-forest"
+              solid ? "border-navy hover:bg-navy hover:text-ivory" : "border-ivory/70 hover:bg-ivory hover:text-navy"
             }`}
           >
             Agenda una visita
@@ -71,7 +71,7 @@ export function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-hair py-5 font-serif text-[30px] leading-none"
+                  className="block border-b border-hair py-5 text-[28px] tracking-[-0.02em] leading-none"
                 >
                   {item.label}
                 </a>
@@ -81,7 +81,7 @@ export function Header() {
           <a
             href="#contacto"
             onClick={() => setOpen(false)}
-            className={`mt-8 block bg-forest py-5 text-center text-ivory ${caps}`}
+            className={`mt-8 block bg-navy py-5 text-center text-ivory ${caps}`}
           >
             Agenda una visita
           </a>

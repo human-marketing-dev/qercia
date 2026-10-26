@@ -17,16 +17,16 @@ const styles = {
     arrow: "text-accent",
     error: "text-accent",
   },
-  // Versión de /alternativa: campos de línea, esquinas rectas y paleta natural.
+  // Versión de /alternativa: campos de línea, esquinas rectas y paleta de Qercia.
   alt: {
     field:
-      "h-[52px] w-full rounded-none border-0 border-b border-hair bg-transparent px-0 text-[17px] text-forest placeholder:text-moss/50 transition-colors focus:border-forest focus:outline-none",
-    label: "text-[12px] uppercase leading-none tracking-[0.16em] text-moss",
-    done: "font-serif text-[34px] leading-snug text-forest md:text-[42px]",
+      "h-[52px] w-full rounded-none border-0 border-b border-hair bg-transparent px-0 text-[17px] text-navy placeholder:text-midnight/40 transition-colors focus:border-navy focus:outline-none",
+    label: "text-[12px] uppercase leading-none tracking-[0.16em] text-midnight/75",
+    done: "text-[30px] leading-snug tracking-[-0.02em] text-navy md:text-[38px]",
     button:
-      "rounded-none bg-forest px-9 py-5 text-[13px] uppercase tracking-[0.18em] text-ivory hover:bg-moss",
+      "rounded-none bg-navy px-9 py-5 text-[13px] uppercase tracking-[0.18em] text-ivory hover:bg-midnight",
     arrow: "text-ivory",
-    error: "text-earth",
+    error: "text-navy",
   },
 };
 
@@ -74,7 +74,7 @@ export function ContactForm({ variant = "default" }: { variant?: keyof typeof st
       </label>
 
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className={`text-[14px] leading-relaxed ${variant === "alt" ? "text-moss" : "text-muted"}`}>
+        <p className={`text-[14px] leading-relaxed ${variant === "alt" ? "text-midnight/75" : "text-muted"}`}>
           Te contactamos por WhatsApp o llamada. No compartimos tus datos.
         </p>
         <button

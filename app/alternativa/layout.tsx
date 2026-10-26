@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
 
-// Serif de títulos para la alternativa; el texto corrido sigue en Inter Tight.
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Tipografía de acento. La oficial es Baskerville Display PT (de pago, no está en Google
+// Fonts); Libre Baskerville la sustituye hasta tener los archivos .woff2 con licencia web.
+const accent = Libre_Baskerville({
+  variable: "--font-accent",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function AlternativaLayout({ children }: LayoutProps<"/alternativa">) {
-  return <div className={`${cormorant.variable} flex min-h-full flex-col bg-ivory`}>{children}</div>;
+  return <div className={`${accent.variable} flex min-h-full flex-col bg-ivory`}>{children}</div>;
 }

@@ -1,6 +1,6 @@
 import { Photo } from "@/app/_components/photo";
 import { SplitTitle } from "@/app/_components/ui";
-import { Button, Eyebrow, TextLink, caps, display, h2, h3, wrap } from "@/app/alternativa/_components/ui";
+import { Button, Eyebrow, TextLink, accent, caps, display, h2, h3, wrap } from "@/app/alternativa/_components/ui";
 import {
   amenities,
   disclaimer,
@@ -33,13 +33,13 @@ export function Hero() {
         eager
         className="absolute inset-0"
       />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/60" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-midnight/50 via-midnight/10 to-midnight/70" />
 
       <div className={`relative pb-16 text-center md:pb-24 ${wrap}`}>
         <p className={`${caps} text-ivory/80`}>Camino al Diente · Carretera Nacional</p>
         <SplitTitle
           text="Un oasis urbano para vivir entre montañas"
-          className={`${display} mx-auto mt-6 max-w-[980px] text-[48px] leading-[1.02] md:text-[92px]`}
+          className={`${display} mx-auto mt-6 max-w-[980px] text-[44px] leading-[1.05] md:text-[80px]`}
         />
         <p className="mx-auto mt-8 max-w-[560px] text-[17px] leading-[1.7] text-ivory/85">
           Terrenos desde 500 metros cuadrados en Camino al Diente, desde 8.3 millones de pesos. Listos para escriturar,
@@ -74,8 +74,8 @@ export function KeyFacts() {
               i % 2 === 1 ? "border-l" : ""
             } ${i < 4 ? "border-b md:border-b-0" : ""} ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
           >
-            <span className={`${display} block text-[40px] leading-none text-forest md:text-[52px]`}>{fact.value}</span>
-            <span className={`mt-4 block ${caps} text-[11px] text-moss`}>{fact.label}</span>
+            <span className={`${accent} block text-[34px] leading-none text-navy md:text-[44px]`}>{fact.value}</span>
+            <span className={`mt-4 block ${caps} text-[11px] text-midnight/75`}>{fact.label}</span>
           </li>
         ))}
       </ul>
@@ -105,10 +105,10 @@ export function Concepto() {
         <div className="flex justify-center">
           <Eyebrow>Oasis urbano</Eyebrow>
         </div>
-        <h2 className={`${h2} mx-auto max-w-[980px] text-forest`}>
-          Una fusión única entre naturaleza y <em className="italic text-moss">calidad en el estilo de vida</em>
+        <h2 className={`${h2} mx-auto max-w-[980px] text-navy`}>
+          Una fusión única entre naturaleza y <em className={`${accent} italic`}>calidad en el estilo de vida</em>
         </h2>
-        <p className="mx-auto mt-8 max-w-[620px] text-[18px] leading-[1.8] text-moss">
+        <p className="mx-auto mt-8 max-w-[620px] text-[18px] leading-[1.8] text-midnight/75">
           Construye tu casa entre montañas, rodeado de más de 27,000 metros cuadrados de áreas verdes y amenidades para
           toda la familia, en Camino al Diente, una de las zonas más cercanas de Carretera Nacional.
         </p>
@@ -126,9 +126,9 @@ export function Concepto() {
       <ol className={`mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-16 ${wrap}`}>
         {conceptPoints.map((point, i) => (
           <li key={point.title} data-reveal style={delay(i)} className="border-t border-hair pt-8">
-            <span className={`${caps} text-earth`}>0{i + 1}</span>
-            <h3 className={`${h3} mt-5 text-forest`}>{point.title}</h3>
-            <p className="mt-5 text-[17px] leading-[1.8] text-moss">{point.body}</p>
+            <span className={`${caps} text-navy`}>0{i + 1}</span>
+            <h3 className={`${h3} mt-5 text-navy`}>{point.title}</h3>
+            <p className="mt-5 text-[17px] leading-[1.8] text-midnight/75">{point.body}</p>
           </li>
         ))}
       </ol>
@@ -146,7 +146,7 @@ const parks = [
 
 export function Parques() {
   return (
-    <section id="parques" className="bg-forest text-ivory/75">
+    <section id="parques" className="bg-navy text-ivory/75">
       <div className="grid lg:grid-cols-2">
         <Photo
           src={fotoAndador}
@@ -157,7 +157,7 @@ export function Parques() {
         <div className="flex flex-col justify-center px-6 py-[100px] md:px-16 lg:px-20 xl:px-28" data-reveal>
           <Eyebrow light>Parques y paisajismo</Eyebrow>
           <h2 className={`${h2} text-ivory`}>Áreas verdes con paisajismo de primer nivel</h2>
-          <p className={`${display} mt-12 text-[72px] leading-none text-sky md:text-[110px]`}>27,000 m²</p>
+          <p className={`${accent} mt-12 text-[64px] leading-none text-sky md:text-[96px]`}>27,000 m²</p>
           <p className="mt-6 max-w-md text-[17px] leading-[1.8]">
             Más de 27,000 metros cuadrados de áreas verdes, con paisajismo de Harari Landscape, la firma que también
             ejecuta la urbanización y el paisajismo de Camino al Diente.
@@ -165,7 +165,7 @@ export function Parques() {
           <ul className="mt-12 border-t border-white/15">
             {parks.map((park) => (
               <li key={park.title} className="grid gap-2 border-b border-white/15 py-6 sm:grid-cols-[180px_1fr] sm:gap-8">
-                <p className={`${display} text-[24px] leading-tight text-ivory`}>{park.title}</p>
+                <p className={`${display} text-[21px] leading-tight text-ivory`}>{park.title}</p>
                 <p className="text-[16px] leading-[1.7]">{park.body}</p>
               </li>
             ))}
@@ -191,9 +191,9 @@ export function Amenidades() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12" data-reveal>
           <div className="lg:col-span-7">
             <Eyebrow>Amenidades</Eyebrow>
-            <h2 className={`${h2} text-forest`}>15 amenidades para toda la familia</h2>
+            <h2 className={`${h2} text-navy`}>15 amenidades para toda la familia</h2>
           </div>
-          <p className="max-w-md text-[17px] leading-[1.8] text-moss lg:col-span-5">
+          <p className="max-w-md text-[17px] leading-[1.8] text-midnight/75 lg:col-span-5">
             Dentro de las áreas verdes del proyecto: alberca, gimnasio y casa club, y también sala de cine, roof garden,
             business hub y centro culinario.
           </p>
@@ -215,9 +215,9 @@ export function Amenidades() {
                   key={name}
                   data-reveal
                   style={delay(i % 5)}
-                  className="flex items-baseline gap-4 border-b border-hair py-4 text-[16px] text-forest"
+                  className="flex items-baseline gap-4 border-b border-hair py-4 text-[16px] text-navy"
                 >
-                  <span className="text-[11px] tabular-nums tracking-[0.1em] text-earth">
+                  <span className="text-[11px] tabular-nums tracking-[0.1em] text-navy">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {name}
@@ -232,7 +232,7 @@ export function Amenidades() {
           </div>
         </div>
 
-        <p className="mt-10 text-[13px] text-moss">
+        <p className="mt-10 text-[13px] text-midnight/75">
           Las amenidades forman parte del proyecto, con entrega en 2027. {disclaimer}
         </p>
       </div>
@@ -247,32 +247,32 @@ export function Infraestructura() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12" data-reveal>
           <div className="lg:col-span-7">
             <Eyebrow>Infraestructura y seguridad</Eyebrow>
-            <h2 className={`${h2} text-forest`}>Infraestructura completa y seguridad para tu familia</h2>
+            <h2 className={`${h2} text-navy`}>Infraestructura completa y seguridad para tu familia</h2>
           </div>
-          <p className="max-w-md text-[17px] leading-[1.8] text-moss lg:col-span-5">
+          <p className="max-w-md text-[17px] leading-[1.8] text-midnight/75 lg:col-span-5">
             Agua de la red, drenaje, gas natural y electricidad subterráneos, y fibra óptica. Todo el desarrollo tiene
             barda perimetral, cámaras de circuito cerrado y accesos con revisión.
           </p>
         </div>
 
-        <ul className="mt-16 grid border-t border-forest/20 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-16 grid border-t border-navy/20 sm:grid-cols-2 lg:grid-cols-5">
           {services.map((service, i) => (
             <li
               key={service.title}
               data-reveal
               style={delay(i)}
-              className={`border-b border-forest/20 py-8 lg:border-b-0 lg:px-6 lg:py-10 ${i > 0 ? "lg:border-l" : "lg:pl-0"}`}
+              className={`border-b border-navy/20 py-8 lg:border-b-0 lg:px-6 lg:py-10 ${i > 0 ? "lg:border-l" : "lg:pl-0"}`}
             >
-              <p className={`${display} text-[26px] leading-tight text-forest`}>{service.title}</p>
-              <p className="mt-2 text-[15px] text-moss">{service.detail}</p>
+              <p className={`${display} text-[21px] leading-tight text-navy`}>{service.title}</p>
+              <p className="mt-2 text-[15px] text-midnight/75">{service.detail}</p>
             </li>
           ))}
         </ul>
 
         <ul className="mt-12 flex flex-col gap-4 md:flex-row md:gap-12">
           {security.map((point) => (
-            <li key={point} className={`flex items-center gap-4 ${caps} text-forest`}>
-              <span aria-hidden className="h-px w-6 bg-earth" />
+            <li key={point} className={`flex items-center gap-4 ${caps} text-navy`}>
+              <span aria-hidden className="h-px w-6 bg-sky" />
               {point}
             </li>
           ))}
@@ -290,13 +290,13 @@ export function Ubicacion() {
         <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-5" data-reveal>
             <Eyebrow>Ubicación</Eyebrow>
-            <h2 className={`${h2} text-forest`}>Camino al Diente, al inicio de Carretera Nacional</h2>
-            <p className="mt-8 max-w-md text-[17px] leading-[1.8] text-moss">
+            <h2 className={`${h2} text-navy`}>Camino al Diente, al inicio de Carretera Nacional</h2>
+            <p className="mt-8 max-w-md text-[17px] leading-[1.8] text-midnight/75">
               Una de las zonas más cercanas de Carretera Nacional, minutos antes de Valle Alto. Qercia colinda con el
               Club Hípico La Silla y el río La Silla. Vives entre montañas, cerca de colegios, hospital, supermercados y
               centros comerciales.
             </p>
-            <address className={`${display} mt-10 text-[24px] not-italic leading-[1.4] text-forest`}>
+            <address className={`${display} mt-10 text-[20px] not-italic leading-[1.4] text-navy`}>
               {site.address.street}
               <br />
               {site.address.city}, {site.address.region}
@@ -313,25 +313,25 @@ export function Ubicacion() {
               src={`https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&z=14&output=embed`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="block aspect-square w-full border-0 grayscale sepia-[.25] md:aspect-[4/3]"
+              className="block aspect-square w-full border-0 grayscale md:aspect-[4/3]"
             />
           </div>
         </div>
 
         <div className="mt-24" data-reveal>
-          <h3 className={`${h3} text-forest`}>Alrededor de Qercia</h3>
+          <h3 className={`${h3} text-navy`}>Alrededor de Qercia</h3>
           <div className="mt-10 grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {entorno.map((group, i) => (
               <div key={group.category} data-reveal style={delay(i % 3)}>
-                <p className={`${caps} text-[11px] text-earth`}>{group.category}</p>
+                <p className={`${caps} text-[11px] text-navy`}>{group.category}</p>
                 <ul className="mt-4 border-t border-hair">
                   {group.places.map((place) => (
                     <li
                       key={place.name}
                       className="flex items-baseline justify-between gap-6 border-b border-hair py-3.5 text-[16px]"
                     >
-                      <span className="text-forest">{place.name}</span>
-                      <span className="shrink-0 tabular-nums text-moss">{place.distance}</span>
+                      <span className="text-navy">{place.name}</span>
+                      <span className="shrink-0 tabular-nums text-midnight/75">{place.distance}</span>
                     </li>
                   ))}
                 </ul>
@@ -359,20 +359,20 @@ const credits = [
 
 export function Respaldo() {
   return (
-    <section id="respaldo" className={`bg-sky/45 ${section}`}>
+    <section id="respaldo" className={`bg-sky/15 ${section}`}>
       <div className={`text-center ${wrap}`}>
         <div className="flex justify-center" data-reveal>
           <Eyebrow>Respaldo</Eyebrow>
         </div>
-        <h2 className={`${h2} mx-auto max-w-[760px] text-forest`} data-reveal>
+        <h2 className={`${h2} mx-auto max-w-[760px] text-navy`} data-reveal>
           Firmas de primer nivel detrás del proyecto
         </h2>
         <ul className="mx-auto mt-16 grid max-w-[980px] gap-12 md:grid-cols-2 md:gap-0">
           {credits.map((credit, i) => (
-            <li key={credit.name} data-reveal style={delay(i)} className={`px-6 md:px-12 ${i > 0 ? "md:border-l md:border-forest/20" : ""}`}>
-              <p className={`${caps} text-earth`}>{credit.role}</p>
-              <p className={`${display} mt-4 text-[34px] leading-tight text-forest md:text-[40px]`}>{credit.name}</p>
-              <p className="mx-auto mt-4 max-w-sm text-[16px] leading-[1.75] text-moss">{credit.body}</p>
+            <li key={credit.name} data-reveal style={delay(i)} className={`px-6 md:px-12 ${i > 0 ? "md:border-l md:border-navy/20" : ""}`}>
+              <p className={`${caps} text-navy`}>{credit.role}</p>
+              <p className={`${accent} mt-4 text-[28px] leading-tight text-navy md:text-[34px]`}>{credit.name}</p>
+              <p className="mx-auto mt-4 max-w-sm text-[16px] leading-[1.75] text-midnight/75">{credit.body}</p>
             </li>
           ))}
         </ul>
@@ -387,21 +387,21 @@ export function Preguntas() {
       <div className={`grid gap-12 lg:grid-cols-12 lg:gap-12 ${wrap}`}>
         <div className="lg:col-span-4" data-reveal>
           <Eyebrow>Preguntas frecuentes</Eyebrow>
-          <h2 className={`${h2} text-forest`}>Lo que más nos preguntan</h2>
+          <h2 className={`${h2} text-navy`}>Lo que más nos preguntan</h2>
         </div>
         <div className="border-t border-hair lg:col-span-7 lg:col-start-6" data-reveal style={delay(1)}>
           {faqs.map((faq) => (
             <details key={faq.q} className="group border-b border-hair">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 [&::-webkit-details-marker]:hidden">
-                <h3 className={`${display} text-[24px] leading-snug text-forest md:text-[26px]`}>{faq.q}</h3>
+                <h3 className={`${display} text-[20px] leading-snug text-navy md:text-[22px]`}>{faq.q}</h3>
                 <span
                   aria-hidden
-                  className="text-[26px] font-light leading-none text-earth transition-transform duration-300 group-open:rotate-45"
+                  className="text-[26px] font-light leading-none text-navy transition-transform duration-300 group-open:rotate-45"
                 >
                   +
                 </span>
               </summary>
-              <p className="max-w-2xl pb-8 text-[17px] leading-[1.8] text-moss">{faq.a}</p>
+              <p className="max-w-2xl pb-8 text-[17px] leading-[1.8] text-midnight/75">{faq.a}</p>
             </details>
           ))}
         </div>
@@ -412,13 +412,13 @@ export function Preguntas() {
 
 export function Footer() {
   return (
-    <footer className="bg-forest text-ivory/60">
+    <footer className="bg-midnight text-ivory/60">
       <div className={`py-[100px] text-center md:py-[130px] ${wrap}`}>
         <span role="img" aria-label="Qercia Residencial" className="logo mx-auto h-24 w-24 text-ivory md:h-28 md:w-28" />
-        <p className={`${display} mt-10 text-[44px] leading-none text-ivory md:text-[72px]`}>Vivir entre montañas</p>
+        <p className={`${accent} mt-10 text-[38px] italic leading-tight text-ivory md:text-[64px]`}>Vivir entre montañas</p>
         <a
           href="#contacto"
-          className={`mt-10 inline-block border border-ivory/50 px-9 py-5 text-ivory transition-colors hover:bg-ivory hover:text-forest ${caps}`}
+          className={`mt-10 inline-block border border-ivory/50 px-9 py-5 text-ivory transition-colors hover:bg-ivory hover:text-navy ${caps}`}
         >
           Agenda una visita
         </a>
