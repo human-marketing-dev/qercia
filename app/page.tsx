@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/app/_components/contact-form";
 import { Header } from "@/app/_components/header";
 import { Eyebrow, h2 } from "@/app/_components/ui";
@@ -14,6 +15,12 @@ import {
   Ubicacion,
 } from "@/app/_components/sections";
 import { SITE_URL, faqs, site } from "@/app/_lib/site";
+
+export const metadata: Metadata = {
+  verification: {
+    other: { "facebook-domain-verification": "wdrw35ag1oxugq5ihs0vmtoqbcro6f" },
+  },
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
