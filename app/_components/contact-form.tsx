@@ -1,8 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useRef, type InputEvent } from "react";
 import { submitLead, type LeadState } from "@/app/actions";
 import { Arrow } from "@/app/_components/ui";
+import { readLeadContact } from "@/app/_lib/lead";
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+  }
+}
 
 const initialState: LeadState = { status: "idle", message: "" };
 
@@ -32,7 +39,18 @@ const styles = {
 
 export function ContactForm({ variant = "default" }: { variant?: keyof typeof styles }) {
   const [state, formAction, pending] = useActionState(submitLead, initialState);
+  const leadEventSent = useRef(false);
   const { field, label, ...st } = styles[variant];
+
+  function trackCompletedFields(event: InputEvent<HTMLFormElement>) {
+    if (leadEventSent.current) return;
+
+    const { error } = readLeadContact(new FormData(event.currentTarget));
+    if (error) return;
+
+    (window.dataLayer ??= []).push({ event: "leadsubmit" });
+    leadEventSent.current = true;
+  }
 
   if (state.status === "ok") {
     return (
@@ -43,7 +61,7 @@ export function ContactForm({ variant = "default" }: { variant?: keyof typeof st
   }
 
   return (
-    <form action={formAction} className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
+    <form action={formAction} onInput={trackCompletedFields} className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
       <label className="flex flex-col gap-2.5 sm:col-span-2">
         <span className={label}>Nombre</span>
         <input name="nombre" required autoComplete="name" className={field} />
